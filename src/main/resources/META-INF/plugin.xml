@@ -1,0 +1,30 @@
+<idea-plugin>
+    <id>com.ohmytoken</id>
+    <name>Oh My Token</name>
+    <!-- 发布前把 email / url 换成你自己的 -->
+    <vendor email="2250023648@qq.com" url="https://github.com/YFFMaple/oh-my-token">oh-my-token</vendor>
+
+    <description><![CDATA[
+        在状态栏实时显示 Claude Code 的 token 消耗：输出速率（tok/s）、累计用量、5 小时窗口限额占用、会话上下文占用。
+        数据来自本地 <code>~/.claude/projects</code> 的会话记录，按 message id 去重，与 ccusage 口径一致。<br><br>
+
+        功能：<br>
+        • 统计范围：今日 / 近 7 天 / 近 30 天 / 全部 / 指定日期<br>
+        • 5 小时滚动窗口限额监控，按当前速率预测打满时间<br>
+        • 会话上下文占用超过阈值时给出预警<br>
+        • 分模型、分项目明细，逐小时 / 逐日用量趋势图<br>
+        • 所有展示项可在 Settings → Tools → Oh My Token 调整<br>
+        • 中英文界面<br><br>
+
+        所有数据仅在本地处理，无任何网络请求。
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <statusBarWidgetFactory implementation="com.ohmytoken.TokenStatusBarFactory" id="OhMyTokenWidget"/>
+        <applicationService serviceImplementation="com.ohmytoken.OhMyTokenSettings"/>
+        <applicationConfigurable parentId="tools" instance="com.ohmytoken.OhMyTokenConfigurable"
+                                 id="com.ohmytoken.settings" displayName="Oh My Token"/>
+    </extensions>
+</idea-plugin>
