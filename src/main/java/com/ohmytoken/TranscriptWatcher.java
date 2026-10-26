@@ -130,8 +130,9 @@ final class TranscriptWatcher {
             }
             long input = getLong(usage, "input_tokens");
             long output = getLong(usage, "output_tokens");
-            long cache = getLong(usage, "cache_creation_input_tokens")
-                    + getLong(usage, "cache_read_input_tokens");
+            // 写入与读取分开记，趋势图按四类堆叠
+            long cacheWrite = getLong(usage, "cache_creation_input_tokens");
+            long cacheRead = getLong(usage, "cache_read_input_tokens");
             String model = message.has("model") && message.get("model").isJsonPrimitive()
                     ? message.get("model").getAsString() : null;
 
@@ -145,7 +146,7 @@ final class TranscriptWatcher {
                     // 无合法时间戳，只计入总量
                 }
             }
-            stats.add(input, output, cache, model, project, at, timestamped);
+            stats.add(input, output, cacheWrite, cacheRead, model, project, at, timestamped);
         } catch (Exception ignored) {
             // 坏行跳过
         }

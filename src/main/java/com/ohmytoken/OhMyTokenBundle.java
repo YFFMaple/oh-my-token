@@ -7,14 +7,10 @@ import org.jetbrains.annotations.PropertyKey;
 /**
  * 国际化文案，按 JVM 默认 Locale 加载 messages/OhMyTokenBundle[_zh_CN].properties。
  */
-final class OhMyTokenBundle extends DynamicBundle {
+final class OhMyTokenBundle {
 
     private static final String BUNDLE = "messages.OhMyTokenBundle";
-    private static final OhMyTokenBundle INSTANCE = new OhMyTokenBundle();
-
-    private OhMyTokenBundle() {
-        super(BUNDLE);
-    }
+    private static final DynamicBundle INSTANCE = new DynamicBundle(OhMyTokenBundle.class, BUNDLE);
 
     static String message(
             @NotNull @PropertyKey(resourceBundle = BUNDLE) String key,

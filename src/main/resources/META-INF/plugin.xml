@@ -1,8 +1,7 @@
 <idea-plugin>
     <id>com.ohmytoken</id>
     <name>Oh My Token</name>
-    <!-- 发布前把 email / url 换成你自己的 -->
-    <vendor email="2250023648@qq.com" url="https://github.com/YFFMaple/oh-my-token">oh-my-token</vendor>
+    <vendor url="https://github.com/YFFMaple/oh-my-token">oh-my-token</vendor>
 
     <description><![CDATA[
         Real-time Claude Code token usage in the status bar: output rate (tok/s), accumulated usage,
@@ -12,9 +11,9 @@
 
         Features / 功能：<br>
         • Ranges: today, last 7/30 days, all, or a specific date / 统计范围：今日 / 近 7 天 / 近 30 天 / 全部 / 指定日期<br>
-        • 5-hour rolling window quota with projected exhaustion time / 5 小时滚动窗口限额监控，预测打满时间<br>
-        • Context usage warning / 会话上下文占用预警<br>
-        • Per-model and per-project breakdown, usage trend charts / 分模型、分项目明细，用量趋势图<br>
+        • 5-hour and 7-day rolling quota with projected exhaustion and release countdown / 5 小时与 7 天滚动限额，预测打满时间与释放倒计时<br>
+        • Context usage warning and threshold notifications / 会话上下文占用预警，超阈值弹窗提醒<br>
+        • Per-model and per-project breakdown, stacked usage trend charts, CSV export / 分模型、分项目明细，堆叠趋势图，CSV 导出<br>
         • Configurable in Settings → Tools → Oh My Token / 所有展示项可在设置中调整<br>
         • English and Chinese UI / 中英文界面<br><br>
 
@@ -28,5 +27,6 @@
         <applicationService serviceImplementation="com.ohmytoken.OhMyTokenSettings"/>
         <applicationConfigurable parentId="tools" instance="com.ohmytoken.OhMyTokenConfigurable"
                                  id="com.ohmytoken.settings" displayName="Oh My Token"/>
+        <notificationGroup id="OhMyToken.Alerts" displayType="BALLOON"/>
     </extensions>
 </idea-plugin>
